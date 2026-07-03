@@ -1,0 +1,16 @@
+.button{
+    border: none;
+    outline: none;
+    padding-inline: 1.5rem;
+    padding-block: 1rem;
+    border-radius: 1rem;
+    transition: all ease-in-out 0.2s;
+
+    &.primary_button{
+        background-color: rgb(196, 26, 26);
+        color: white;
+    }
+    &:active{
+        transform: scale(0.9);
+    }
+}

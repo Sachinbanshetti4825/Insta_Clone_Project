@@ -1,0 +1,38 @@
+.auth_page{
+    display: flex;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
+
+    .form_container{
+        height: fit-content;
+        min-width: 400px;
+
+        form{
+
+            display: flex;
+            flex-direction: column;
+            gap: 1.4rem;
+            width: 100%;
+
+            label{
+                display: block;
+                margin-bottom:0.2rem;
+            }
+
+
+            input{
+                width: 100%;
+                box-sizing: border-box;
+                padding-inline:1.5rem;
+                padding-block: 1rem;
+                border: none;
+                outline: none;
+                border-radius: 1rem;
+            }
+            
+        }
+    }
+}
