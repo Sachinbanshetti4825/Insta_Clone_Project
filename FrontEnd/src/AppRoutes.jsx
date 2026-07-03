@@ -1,10 +1,9 @@
 import React from 'react'
 import {BrowserRouter,Routes,Route} from "react-router-dom"
 import Login from './features/auth/pages/Login'
-import Register from "./features/auth/pages/Register"
-import Home from './features/post/Home' 
+import Register from "./features/auth/pages/Register" 
 import Feed from "./features/post/pages/Feed"
-import CreatePost from './features/post/pages/createPost'
+import CreatePost from './features/post/pages/CreatePost'
 import Post from './features/post/Components/Post'
 import Nav from './features/post/Components/Nav'
 
