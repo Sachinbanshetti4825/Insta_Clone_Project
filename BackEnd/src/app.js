@@ -14,7 +14,11 @@ let app=express();
 app.use(express.json());
 app.use(cookieparser());
 app.use(cors({
-    origin:"https://insta-clone-project-2.onrender.com",
+    origin:[
+        "https://insta-clone-project-1.onrender.com",
+    "https://insta-clone-project-2.onrender.com",
+        "http://localhost:3000"
+    ],
     credentials:true
 }));
 
