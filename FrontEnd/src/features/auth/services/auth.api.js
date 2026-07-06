@@ -1,7 +1,7 @@
 import axios from "axios"
 
 let api=axios.create({
-    baseURL:"http://locahost:3000/api/auth",
+    baseURL:"https://insta-clone-project-backend.onrender.com/api/auth",
     withCredentials:true
 })
 
