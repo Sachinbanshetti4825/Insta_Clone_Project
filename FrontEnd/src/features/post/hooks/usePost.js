@@ -5,21 +5,21 @@ import { Like,unLike } from "../services/post.api";
 import {Follow,unFollow} from "../services/post.api";
 import { createPost } from "../services/post.api";
 import { getSpecificPost } from "../services/post.api";
+import { Save,unSave } from "../services/post.api";
+import { Comment,UnComment,getComment } from "../services/post.api";
 
 export  function usePost(){
 
     let context=useContext(PostContext);
 
 
-    let {loading,setLoading,posts,setPosts,post,setPost} = context;
+    let {loading,setLoading,posts,setPosts,post,setPost,comments,setComments} = context;
 
     async function handlegetFeed(){
 
         setLoading(true);
 
         let postsInfo=await getFeed();
-
-        console.log(postsInfo)
 
         setPosts(postsInfo.posts);
 
@@ -94,8 +94,67 @@ export  function usePost(){
         setLoading(false);
     }
 
+    async function handleSave(PostId){
+
+
+        let save=await Save(PostId);
+
+        await handlegetFeed()
+        
+
+    }
+
+    async function handleUnSave(PostId){
+
+
+        let unsave=await unSave(PostId);
+
+        await handlegetFeed()
+        
+
+    }
+
+    async function handleGetComment(PostId){
+
+        let res=await getComment(PostId);
+
+        setComments(res.AllComments);
+
+    }
+
+    async function handleComment(PostId,text){
+
+        let res=await Comment(PostId,text);
+
+
+        setComments([...comments, res.Comment])
+
+        await handleGetComment(PostId);
+
+    }
+
+    async function handleUnComment(CommentId){
+
+        let res=await UnComment(CommentId);
+
+        setComments(prev=>
+            prev.filter(comment=>comment._id!==CommentId)
+        );
+
+    }
+
+    
+
+
+
     return {
-        posts,loading,post,handlegetFeed,handleLike,handleunLike,handleFollow,handleunFollow,handleCreatePost,handleSpecificPost
+        posts,loading,post,comments,
+        handlegetFeed,
+        handleLike,handleunLike,
+        handleFollow,handleunFollow,
+        handleCreatePost,handleSpecificPost,
+        handleSave,handleUnSave,
+        handleComment,handleUnComment,handleGetComment
     }
 
 }

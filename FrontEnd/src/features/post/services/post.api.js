@@ -1,7 +1,7 @@
 import axios from "axios";
 
 let api=axios.create({
-    baseURL:"https://insta-clone-project-hzux.onrender.com/api",
+    baseURL:"http://localhost:3000/api",
     withCredentials:true
 })
 
@@ -74,3 +74,44 @@ export async function getSpecificPost(PostId) {
 
 }
 
+export async function Save(PostId){
+
+    let res=await api.post(`/save/Save/${PostId}`);
+
+    return res.data;
+
+}
+
+export async function unSave(PostId){
+
+    let res=await api.delete(`/save/unSave/${PostId}`);
+
+    return res.data;
+
+}
+
+export async function Comment(PostId,text){
+
+    let res=await api.post(`/cmt/comment/${PostId}`,{
+        text:text
+    });
+
+    return res.data;
+
+}
+
+export async function UnComment(PostId){
+
+    let res=await api.delete(`/cmt/unComment/${PostId}`);
+
+    return res.data;
+
+}
+
+export async function getComment(PostId){
+
+    let res=await api.get(`/cmt/getComment/${PostId}`);
+
+    return res.data;
+
+}

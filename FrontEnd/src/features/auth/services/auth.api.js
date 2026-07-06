@@ -1,7 +1,7 @@
 import axios from "axios"
 
 let api=axios.create({
-    baseURL:"https://insta-clone-project-hzux.onrender.com/api/auth",
+    baseURL:"http://localhost:3000/api/auth",
     withCredentials:true
 })
 
@@ -16,7 +16,7 @@ export async function Login(LoginId,PassWord){
 
 }
 
-export async function Register(UserName,PassWord,Email,Bio){
+export async function Register(UserName,Email,PassWord,Bio){
 
     let response=await api.post("/register",{
         UserName,PassWord,Email,Bio

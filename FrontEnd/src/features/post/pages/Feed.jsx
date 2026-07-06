@@ -8,8 +8,6 @@ const Feed = () => {
 
   let {posts ,loading,handlegetFeed}=usePost();
 
-  console.log(posts);
-
   async function fetchPosts() {
      await handlegetFeed();
   }

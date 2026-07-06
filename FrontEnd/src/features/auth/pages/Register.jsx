@@ -3,8 +3,11 @@ import axios from "axios"
 import "../style/form.scss"
 import { Link } from 'react-router-dom'
 import { useAuth } from '../hooks/useAuth'
+import { useNavigate } from 'react-router-dom'
 
 const Register = () => {
+
+  let navigate=useNavigate();
 
     let [userData,setUserData] =useState({
         UserName:"",
@@ -20,7 +23,9 @@ const Register = () => {
 
       e.preventDefault();
 
+      console.log(userData);
       await handleRegister(userData.UserName,userData.Email,userData.PassWord,userData.Bio);
+
 
       setUserData({
         UserName:"",
@@ -28,6 +33,8 @@ const Register = () => {
         PassWord:"",
         Bio:""
       })
+
+      navigate("/login");
 
     }
 

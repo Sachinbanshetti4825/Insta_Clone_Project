@@ -5,8 +5,9 @@ import { useNavigate } from 'react-router-dom';
 const Post = ({post}) => {
 
 
-    let {handleLike,handleunLike,handleFollow,handleunFollow}=usePost();
+    let {handleLike,handleunLike,handleFollow,handleunFollow,handleSave,handleUnSave}=usePost();
 
+    let navigate=useNavigate();
 
   return (
     <div className="post"
@@ -28,12 +29,12 @@ const Post = ({post}) => {
                 
                     <div className="left">
                         <button onClick={post.isLiked ? ()=>handleunLike(post._id) :()=>handleLike(post._id)} className={post.isLiked ? "Unlike" : "Like"} ><i class="ri-heart-line"></i>{post.likeCount}</button>
-                        <button><i class="ri-chat-1-line"></i></button>
+                        <button onClick={(e)=>navigate(`/comment/${post._id}`)} ><i class="ri-chat-1-line"></i></button>
                         <button><i class="ri-share-forward-line"></i></button>
                     </div>
 
                     <div className="right">
-                        <button><i class="ri-save-line"></i></button>
+                        <button className={post.isSaved ? "unSave" : "Save"} onClick={post.isSaved ? ()=>handleUnSave(post._id) : ()=>handleSave(post._id) } ><i class="ri-save-line"></i></button>
                     </div>
 
             </div>

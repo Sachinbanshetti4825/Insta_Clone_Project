@@ -288,12 +288,27 @@
                             }
                         }
 
+                        
+
                         .right{
 
                             button:hover{
                                 background:#18454c;
                                 color:#57f5d3;
                             }
+
+                            .save{
+                                color:black;
+                            }
+                        .unSave{
+                            color: red;
+
+                            i{
+                                color: red;
+                            }
+
+                        }
+
                         }
                     }
 

@@ -15,7 +15,8 @@ export const useAuth = ()=>{
 
         let response=await Login(LoginId,PassWord);
 
-        setUser(response.data);
+        setUser(response.user);
+        console.log(response.user);
         setMsg(response.msg);
 
         setLoading(false);
@@ -28,15 +29,27 @@ export const useAuth = ()=>{
 
         let response=await Register(UserName,Email,PassWord,Bio);
 
-        setUser(response.data);
+        console.log(response.user);
+
+        setUser(response.user);
+
+
         setMsg(response.msg);
 
         setLoading(false);
 
     }
 
+    const handleLogout = () => {
+
+        setUser(null);
+
+        localStorage.removeItem("user");
+    };
+    
+
     return {
-        user,loading,handleLogin,handleRegister
+        user,loading,handleLogin,handleRegister,handleLogout
     }
 
 

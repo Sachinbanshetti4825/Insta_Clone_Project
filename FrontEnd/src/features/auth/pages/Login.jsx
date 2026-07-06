@@ -28,7 +28,7 @@ const Login = () => {
 
     await handleLogin(userData.LoginId,userData.PassWord);
 
-    navigate("/")
+    navigate("/feed")
 
   }
 

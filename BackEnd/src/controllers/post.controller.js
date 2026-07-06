@@ -1,8 +1,10 @@
 require("dotenv").config();
+const cmtModel = require("../models/comment.model");
 const followModel = require("../models/follow.model");
 const likeModel = require("../models/like.model");
 let postModel=require("../models/post.model");
 let Imagekit=require("imagekit");
+const saveModel = require("../models/save.model");
 
 let imagekit=new Imagekit({
     publicKey:process.env.Imagekit_Public_Key,
@@ -112,11 +114,17 @@ async function getFeedController(req,res){
             Following:post.User._id      
         })
 
+        let isSaved=await saveModel.findOne({
+            Post:post._id,
+            User:req.user.id
+        })
+
         return {
             ...post.toObject(),
             isLiked:!!isLiked,
             likeCount,
-            isFollowed:!!isFollowed
+            isFollowed:!!isFollowed,
+            isSaved:!!isSaved
         }
 
     })

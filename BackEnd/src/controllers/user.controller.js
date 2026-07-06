@@ -41,7 +41,13 @@ async function registerController (req,res){
 
     res.status(201).json({
         Message:"User created successfully",
-        user
+        user:{
+            _id:user._id,
+            UserName:user.UserName,
+            Email:user.Email,
+            Bio:user.Bio,
+            profile_image:user.profile_image
+        }
     })
 
 }
@@ -49,6 +55,8 @@ async function registerController (req,res){
 async function loginController(req,res){
 
     let {LoginId,PassWord}=req.body;
+
+    console.log(req.body);
 
     let user=await userModel.findOne({
         $or:[
@@ -61,6 +69,8 @@ async function loginController(req,res){
         ]
     })
 
+    console.log(user);
+
     if(!user){
         return res.status(400).json({
             Message:"User does not exists"
@@ -69,11 +79,16 @@ async function loginController(req,res){
 
     let correctedPassword=await bcrypt.compare(PassWord,user.PassWord);
 
+    
+
     if(!correctedPassword){
         return res.status(401).json({
             Message:"Invalid user unauthorized access"
         })
     }
+
+    console.log("Entered Password:", PassWord);
+    console.log("Password Match:", correctedPassword);
 
     const token=jwt.sign(
         {
@@ -87,8 +102,11 @@ async function loginController(req,res){
     res.status(200).json({
         Message:"User logined successfully",
         user:{
+            _id:user._id,
             UserName:user.UserName,
             Email:user.Email,
+            Bio:user.Bio,
+            profile_image:user.profile_image
         }
     })
 

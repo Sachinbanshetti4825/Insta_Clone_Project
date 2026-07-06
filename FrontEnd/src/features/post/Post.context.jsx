@@ -7,9 +7,11 @@ export const PostProvider = ({children})=>{
     let [loading,setLoading]=useState(false);
     let [posts,setPosts]=useState([]);
     let [post,setPost]=useState(null);
+    let [comment,setComment]=useState(null);
+    let [comments,setComments]=useState([]);
 
     return(
-        <PostContext.Provider value={{loading,setLoading,posts,setPosts,post,setPost}}>
+        <PostContext.Provider value={{loading,setLoading,posts,setPosts,post,setPost,comment,setComment,comments,setComments}}>
             {children}
         </PostContext.Provider>
     )
