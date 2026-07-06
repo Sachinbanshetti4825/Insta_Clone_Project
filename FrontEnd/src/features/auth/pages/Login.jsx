@@ -24,8 +24,6 @@ const Login = () => {
 
     e.preventDefault();
 
-    
-
     await handleLogin(userData.LoginId,userData.PassWord);
 
     navigate("/feed")
